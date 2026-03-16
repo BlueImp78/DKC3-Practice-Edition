@@ -114,8 +114,8 @@ NOTE: A time will only be saved if you beat the level from the main entrance. If
 
 - Level Timer: Keeps track of your time in the level (minutes/seconds/frames).
 
-	 Whenever you respawn/reload with the Fast Retry feature, the timer will also roll back to what it was at the time
-	 your stuff was preserved.
+  - Whenever you respawn/reload with the Fast Retry feature, the timer will also roll back to what it was at the time
+	your stuff was preserved.
 
 - Bleak skip counter: On either Japanese 1.0 or 1.1 versions, a number will be displayed on the top of the screen to tell
 	how many frames early or late you were on the start press for Bleak skip. If you're late the number will be 
