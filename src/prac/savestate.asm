@@ -330,7 +330,6 @@ handle_savestates:
 	; LDA savestate.screen_scroll_y_copy
 	; STA screen_scroll_y_position
 
-	WDM
 	LDA #$0002
 	STA savestate.copy_restore_routine
 	JMP .done

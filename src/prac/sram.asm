@@ -101,7 +101,6 @@ load_data_from_sram:
 validate_sram:
 %local(.additive_checksum, temp_20)
 %local(.xor_checksum, temp_22)
-	WDM
 
 	JSR calculate_sram_checksum
 

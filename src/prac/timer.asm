@@ -478,7 +478,6 @@ get_bleak_skip_result:
 	LDA player_inputs_copy.p1_pressed
 	BIT #!input_start
 	BEQ .return
-	WDM
 	LDA active_frame_counter
 	CMP #$0069
 	BCC .early

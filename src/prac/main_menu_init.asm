@@ -128,12 +128,9 @@ main_menu_init:
 	BRA --
 +
 
-
 	LDA #$0000
 	STA.l sram.unused_1
 	STA.l sram.unused_2
-
-	WDM
 
 	JSL validate_sram
 	BCC .valid_save
