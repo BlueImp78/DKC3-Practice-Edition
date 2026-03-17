@@ -124,6 +124,8 @@ NOTE: A time will only be saved if you beat the level from the main entrance. If
 ## Known Issues
 
 - Bonuses can have incorrect sound effects/samples loaded in when entered from the menu.
+  
+- Input display can change colors when transformed into an animal. (No practical fix for this)
 
 If you have trouble patching the game or found issues that are not listed here, contact me on discord (blueimp78).
   
