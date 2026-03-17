@@ -4,7 +4,7 @@
 
 - Use the included flips program to apply the appropriate .bps patch to your unheadered (.sfc) DKC3 (US, J1.0 or J1.1) ROM.
 
-## Main Menu Page:
+## Main Menu Page
 
 - Controls:
   - DPAD: Move cursor and selections (duh)
@@ -67,7 +67,7 @@ NOTE: A time will only be saved if you beat the level from the main entrance. If
 - Banana bird caves are repeatable, going to wrinkly with all of the birds won't trigger the true ending and will just put
 	you back on the map. (Saving in wrinkly will also do nothing to prevent it from nuking your save file.
 
-## Bear Houses:
+## Bear Houses
 
 - You can warp to any bear house in the game Their flags will always be cleared and you will have the necessary items in
 	your inventory for the trade, if any.
@@ -82,7 +82,7 @@ NOTE: A time will only be saved if you beat the level from the main entrance. If
 - Press SELECT at any point in a bear house to return to the menu (if entered from it).
 
 
-## Banana Bird Caves:
+## Banana Bird Caves
 
 - You can warp to a banana bird cave and set how many inputs (4 through 9) you want to do in the minigame.
 
@@ -121,7 +121,7 @@ NOTE: A time will only be saved if you beat the level from the main entrance. If
 	how many frames early or late you were on the start press for Bleak skip. If you're late the number will be 
 	a different color, otherwise if early it will be white.
 
-## Known Issues:
+## Known Issues
 
 - Bonuses can have incorrect sound effects/samples loaded in when entered from the menu.
 
@@ -130,12 +130,12 @@ If you have trouble patching the game or found issues that are not listed here, 
 I will NOT be providing any support for ZSNES issues. For the love of god drop that emulator already.
 
 
-## Special Thanks:
+## Special Thanks
 
 - The DKC speedrunning community for commissioning me to make this hack. You guys rock.
 
-- Stormsn, Laff, and Doumeis for console/beta testing.
+- Stormsn, laff4, and Doumeis for console/beta testing.
 
-- Laff for 103% route and bear skips info.
+- laff4 for 103% route and bear skips info.
 
-- H4v0c21 for the kiddy icon.
+- H4v0c21 for the Kiddy icon.
