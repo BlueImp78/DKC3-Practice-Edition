@@ -117,7 +117,7 @@ assert pc() <= $EB81FF
 
 
 
-;New palettes (garbage data in US, may not be in J?)
+;New palettes (garbage data from here on)
 org $FDE815
 main_menu_sprite_text_purple_pall_full:
 	incbin "data/gfx/sprites/sprite_text_purple_pal_full.bin"

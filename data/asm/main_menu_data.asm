@@ -2,7 +2,7 @@ build_date:
 	db "DKC3 PRAC ASSEMBLY DATE & TIME ", "!timestamp "
 
 hack_version:
-	dW $0001				;1.0
+	dW $0101				;1.0.1
 
 
 main_menu_selection_cap_values:
@@ -23,7 +23,7 @@ main_menu_level_cap_values:
 	dw $0006				;World 6
 	dw $0006				;World 7
 	dw $0006				;World 8
-	dw $0004				;Boating
+	dw $0006				;Boating
 	dw $000D				;Bear Houses
 	dw $0006				;Crystal Caves
 
@@ -343,19 +343,20 @@ level_text_table:
 	db "GAME START", $00
 
 .boat_2:
-	db "W8 UNLOCK", $00
+	db "W2 TO W3", $00
 
 .boat_3:
-	db "W7 TO W8", $00
+	db "W4 TO W5", $00
 
 .boat_4:
-	db "103 CLEANUP", $00
+	db "W8 UNLOCK", $00
 
 .boat_5:
-	db "BOAT 5", $00
+	db "W7 TO W8", $00
 
 .boat_6:
-	db "BOAT 6", $00
+	db "103 CLEANUP", $00
+
 
 
 
@@ -1231,6 +1232,8 @@ bear_setup_table:
 
 world_map_setup_table:
 	dw .game_start
+	dw .w2_to_w3
+	dw .w4_to_w5
 	dw .w8_unlock
 	dw .w7_to_w8
 	dw .103_cleanup
@@ -1240,6 +1243,18 @@ world_map_setup_table:
 	dw $0000, $0000, $0400
 	dw $0000, $0000
 	dw set_game_start_map_stuff
+
+.w2_to_w3:
+	db !world_northern_kremisphere, !vehicle_motorboat, $05, $05, $01, $01, $00
+	dw $0407, $8832, $8400
+	dw $0286, $02DF
+	dw set_w2_to_w3_map_stuff
+
+.w4_to_w5:
+	db !world_northern_kremisphere, !vehicle_hovercraft, $07, $07, $02, $02, $00
+	dw $0407, $8832, $8C00
+	dw $01CC, $0200
+	dw set_w4_to_w5_map_stuff
 
 .w8_unlock:
 	db !world_northern_kremisphere, !vehicle_turbo_ski, $07, $07, $10, $10, $00

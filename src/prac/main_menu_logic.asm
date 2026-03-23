@@ -218,6 +218,7 @@ setup_level:
 	STA.l sram.selected_color
 	LDA settings.game_mode
 	STA current_game_mode
+	JSL calculate_and_save_checksum
 	JSL preserve_menu_player_status
 	RTS
 
@@ -493,6 +494,49 @@ set_game_start_map_stuff:
 	RTS
 
 
+set_w2_to_w3_map_stuff:
+	JSR unlock_world_map
+	JSR unlock_levels
+	LDA #$000C
+	%conditional_ram_word(STA, $0615)				;Reset Bazaar
+	LDA #$0002
+	%conditional_ram_word(STA, banana_bird_count)
+	LDA #$0015
+	%conditional_ram_word(STA, bonus_coin_count)
+	%conditional_ram_word(STZ, $0695)				;Krematoa locked
+	%conditional_ram_word(STZ, $0601)				;No rocks removed in Krematoa
+	%conditional_ram_word(STZ, boomer_explosive_count)
+	%conditional_ram_word(STZ, boomer_cog_count)
+	%conditional_ram_word(STZ, $062D)				;Reset Boomer
+	%conditional_ram_word(STZ, $0619)				;Reset Bramble
+	%conditional_ram_word(STZ, $061D)				;Reset Barnacle
+	%conditional_ram_word(STZ, $0623)				;Reset Bazooka
+	LDA #$0001
+	%conditional_ram_word(STA, $0693)				;Mark w5 as not beaten so funky wont give dk coin dialogue
+	RTS
+
+set_w4_to_w5_map_stuff:
+	JSR unlock_world_map
+	JSR unlock_levels
+	LDA #$000C
+	%conditional_ram_word(STA, $0615)				;Reset Bazaar
+	LDA #$0002
+	%conditional_ram_word(STA, banana_bird_count)
+	LDA #$0029
+	%conditional_ram_word(STA, bonus_coin_count)
+	%conditional_ram_word(STZ, $0695)				;Krematoa locked
+	%conditional_ram_word(STZ, $0601)				;No rocks removed in Krematoa
+	%conditional_ram_word(STZ, boomer_explosive_count)
+	%conditional_ram_word(STZ, boomer_cog_count)
+	%conditional_ram_word(STZ, $062D)				;Reset Boomer
+	%conditional_ram_word(STZ, $0619)				;Reset Bramble
+	%conditional_ram_word(STZ, $061D)				;Reset Barnacle
+	%conditional_ram_word(STZ, $0623)				;Reset Bazooka
+	LDA #$0001
+	%conditional_ram_word(STA, $0693)				;Mark w5 as not beaten so funky wont give dk coin dialogue
+	LDA #$2002
+	%conditional_ram_word(STA, $0605)				;Set double ski's
+	RTS
 
 
 set_w8_unlock_map_stuff:
