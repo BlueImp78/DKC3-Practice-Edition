@@ -49,15 +49,15 @@ temp_3F 				= $3F
 temp_40 				= $40
 
 
-NMI_pointer 				= $4A
-
-tileset_NMI_index 			= $56
-tileset_logic_index 			= $58
-
-global_frame_counter 			= $5A
-
-current_sprite_constants 		= $6A
-sprite_constants_bank 			= $6B
+NMI_pointer				= $4A
+complete_frame_nmi_pointer		= $4C
+game_mode_pointer			= $4E
+game_mode_pointer_bank			= $50
+incomplete_frame_game_mode_ptr		= $52
+incomplete_frame_game_mode_bank		= $54
+nmi_sub_mode				= $56
+game_sub_mode				= $58
+global_frame_counter			= $5A
 
 current_sprite 				= $70
 current_kong_control_variables 		= $72

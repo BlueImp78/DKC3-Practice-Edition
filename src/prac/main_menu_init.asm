@@ -57,7 +57,8 @@ main_menu_init:
 
 
 ;Default cursor position
-	INC main_menu.menu_active
+	LDA #$0001
+	STA main_menu.menu_active
 	STZ main_menu.entered_bonus
 	LDA #$0020
 	STA main_menu.current_cursor_pos
@@ -166,6 +167,8 @@ main_menu_init:
 	LDA #$4000
 	TSB active_cheats			;Disable HARDR cheat
 	STZ savestate.save_exists
+
+	STZ $04EA				;Not clearing this results in being sent to world map if it has a 05 in it after a bonus
 
 
 ;Set fade, NMI and prepare OAM

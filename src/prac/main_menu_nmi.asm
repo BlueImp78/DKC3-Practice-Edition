@@ -65,7 +65,7 @@ update_kong_icon_palette:
 	ASL
 	TAX
 	LDA .icon_palettes,x
-	LDY #$00F0
+	LDY #$00F1
 	LDX #$0004
 	JSL DMA_palette
 	RTS
@@ -74,3 +74,10 @@ update_kong_icon_palette:
 .icon_palettes:
 	dw kong_icons_palette_p1
 	dw kong_icons_palette_p2
+	dw kong_icons_palette_p3
+	dw kong_icons_palette_p4
+	dw kong_icons_palette_p5
+	dw kong_icons_palette_p6
+	dw kong_icons_palette_p7
+	dw kong_icons_palette_p8
+	dw kong_icons_palette_p9

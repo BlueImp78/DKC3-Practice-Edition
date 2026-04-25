@@ -81,7 +81,10 @@ dialogue_font_tiledata		= $FC14A0
 
 
 ;BANK FD (DATA)
+sprite_palette_table		= $FD3201
 tv_screen_bg_palette		= $FD8381
+dixie_palettes_base		= $FD341B
+kiddy_palettes_base		= $FD34CF
 
 
 
@@ -165,7 +168,10 @@ dialogue_font_tiledata		= $FC14A0
 
 
 ;BANK FD (DATA)
+sprite_palette_table		= $FD31B4
 tv_screen_bg_palette		= $FD8334
+dixie_palettes_base		= $FD33CE
+kiddy_palettes_base		= $FD3482
 
 
 
@@ -249,7 +255,10 @@ dialogue_font_tiledata		= $FC14A0
 
 
 ;BANK FD (DATA)
+sprite_palette_table		= $FD31B4
 tv_screen_bg_palette		= $FD8334
+dixie_palettes_base		= $FD33CE
+kiddy_palettes_base		= $FD3482
 
 
 endif

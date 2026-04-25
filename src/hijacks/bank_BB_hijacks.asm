@@ -8,11 +8,13 @@ hijack_flagpole_fade_setup		= $BBC963
 hijack_bonus_coin_set_collected		= $BBD54A
 hijack_hud_draw_routine			= $BBB285
 hijack_hud_something			= $BBADE9
-hijack_banana_hud_draw			= $BBADF8
+hijack_banana_hud_draw			= $BBB2B1
 hijack_lives_icon_y_pos_set		= $BBB1A5
 hijack_lives_hud_number_draw		= $BBB245
 hijack_bonus_song_tempo_speedup		= $BBD8FE
 hijack_bonus_song_tempo_speedup_2	= $BBD90D
+hijack_level_kong_palette_upload	= $BB969F
+hijack_map_kong_palette_offset_lsr	= $BB96B9
 
 
 
@@ -27,11 +29,13 @@ hijack_level_exit_routine		= $BBA222
 hijack_bonus_coin_set_collected		= $BBD54E
 hijack_hud_draw_routine			= $BBB297
 hijack_hud_something			= $BBADFB
-hijack_banana_hud_draw			= $BBAE0A
+hijack_banana_hud_draw			= $BBB2C3
 hijack_lives_icon_y_pos_set		= $BBB1B7
 hijack_lives_hud_number_draw		= $BBB257
 hijack_bonus_song_tempo_speedup		= $BBD902
 hijack_bonus_song_tempo_speedup_2	= $BBD911
+hijack_level_kong_palette_upload	= $BB969F
+hijack_map_kong_palette_offset_lsr	= $BB96B9
 
 
 
@@ -46,11 +50,13 @@ hijack_level_exit_routine		= $BBA222
 hijack_bonus_coin_set_collected		= $BBD54E
 hijack_hud_draw_routine			= $BBB297
 hijack_hud_something			= $BBADFB
-hijack_banana_hud_draw			= $BBAE0A
+hijack_banana_hud_draw			= $BBB2C3
 hijack_lives_icon_y_pos_set		= $BBB1B7
 hijack_lives_hud_number_draw		= $BBB257
 hijack_bonus_song_tempo_speedup		= $BBD902
 hijack_bonus_song_tempo_speedup_2	= $BBD911
+hijack_level_kong_palette_upload	= $BB969F
+hijack_map_kong_palette_offset_lsr	= $BB96B9
 
 
 endif
@@ -128,7 +134,7 @@ org hijack_hud_something
 
 
 org hijack_banana_hud_draw
-	NOP
+	JSL banana_hud_skip_check
 	NOP
 	NOP
 
@@ -149,6 +155,14 @@ org hijack_bonus_song_tempo_speedup
 org hijack_bonus_song_tempo_speedup_2
 	NOP #7
 
+
+org hijack_level_kong_palette_upload
+	JSL upload_new_kong_palettes
+	NOP #7
+
+org hijack_map_kong_palette_offset_lsr
+	JSL fuck1
+	NOP #5
 
 
 if !version != !us

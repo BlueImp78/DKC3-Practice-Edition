@@ -6,6 +6,7 @@
 *.sh
 *.7z
 *.zip
+*.png
 build.bat
 asar.exe
 *.exe

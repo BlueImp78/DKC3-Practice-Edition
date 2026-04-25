@@ -1,3 +1,4 @@
+
 set_fast_retry_state:
 	STZ fast_retry_type
 	LDA #$0EA1

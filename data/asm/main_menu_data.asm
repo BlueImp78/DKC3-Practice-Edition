@@ -2,7 +2,7 @@ build_date:
 	db "DKC3 PRAC ASSEMBLY DATE & TIME ", "!timestamp "
 
 hack_version:
-	dW $0101				;1.0.1
+	dW $0001				;1.1
 
 
 main_menu_selection_cap_values:
@@ -10,7 +10,7 @@ main_menu_selection_cap_values:
 	dw $0006				;Levels
 	dw $0009				;Entrances
 	dw $0004				;Kong order
-	dw $0002				;Color
+	dw $0009				;Color
 	dw $0023				;Songs
 
 
@@ -23,7 +23,7 @@ main_menu_level_cap_values:
 	dw $0006				;World 6
 	dw $0006				;World 7
 	dw $0006				;World 8
-	dw $0006				;Boating
+	dw $0007				;Boating
 	dw $000D				;Bear Houses
 	dw $0006				;Crystal Caves
 
@@ -152,6 +152,7 @@ level_text_table:
 	dw .boat_4
 	dw .boat_5
 	dw .boat_6
+	dw .boat_7
 
 	dw .bazaar
 	dw .blunder
@@ -349,12 +350,15 @@ level_text_table:
 	db "W4 TO W5", $00
 
 .boat_4:
-	db "W8 UNLOCK", $00
+	db "W5 TO W6", $00
 
 .boat_5:
 	db "W7 TO W8", $00
 
 .boat_6:
+	db "W8 UNLOCK", $00
+
+.boat_7:
 	db "103 CLEANUP", $00
 
 
@@ -519,8 +523,8 @@ world_offset_values_table:
 	dw $0048
 	dw $0054
 	dw $0060
-	dw $006C
-	dw $0086
+	dw $006E
+	dw $0088
 
 
 ;How much to subtract from the base entrance cap. Always subtract max from boss levels except K.Rool 1
@@ -599,6 +603,7 @@ entrance_cap_table:
 	dw !null_pointer
 
 ;Boating
+	dw $0009
 	dw $0009
 	dw $0009
 	dw $0009
@@ -699,6 +704,7 @@ level_entrances_table:
 
 
 ;Boating
+	dw .dummy_entrance
 	dw .dummy_entrance
 	dw .dummy_entrance
 	dw .dummy_entrance
@@ -1234,8 +1240,9 @@ world_map_setup_table:
 	dw .game_start
 	dw .w2_to_w3
 	dw .w4_to_w5
-	dw .w8_unlock
+	dw .w5_to_w6
 	dw .w7_to_w8
+	dw .w8_unlock
 	dw .103_cleanup
 
 .game_start:
@@ -1256,17 +1263,23 @@ world_map_setup_table:
 	dw $01CC, $0200
 	dw set_w4_to_w5_map_stuff
 
-.w8_unlock:
-	db !world_northern_kremisphere, !vehicle_turbo_ski, $07, $07, $10, $10, $00
-	dw $0407, $8832, $9C40
-	dw $01D0, $0200
-	dw set_w8_unlock_map_stuff
+.w5_to_w6:
+	db !world_northern_kremisphere, !vehicle_turbo_ski, $0A, $0A, $00, $00, $00
+	dw $0407, $8832, $DC00
+	dw $0244, $0180
+	dw set_w5_to_w6_map_stuff
 
 .w7_to_w8:
 	db !world_kaos_kore, !vehicle_turbo_ski, $09, $0D, $24, $04, $20
 	dw $0407, $8832, $9C40
 	dw $0290, $0148
 	dw set_w7_to_w8_map_stuff
+
+.w8_unlock:
+	db !world_northern_kremisphere, !vehicle_turbo_ski, $07, $07, $10, $10, $00
+	dw $0407, $8832, $9C40
+	dw $01D0, $0200
+	dw set_w8_unlock_map_stuff
 
 .103_cleanup:
 	db !world_krematoa, !vehicle_turbo_ski, $08, $0E, $24, $04, $20
@@ -1284,6 +1297,13 @@ crystal_cave_bird_counts:
 color_numbers_table:
 	dw .one
 	dw .two
+	dw .three
+	dw .four
+	dw .five
+	dw .six
+	dw .seven
+	dw .eight
+	dw .nine
 
 .one:
 	db "1", $00
@@ -1291,6 +1311,26 @@ color_numbers_table:
 .two:
 	db "2", $00
 
+.three:
+	db "3", $00
+
+.four:
+	db "4", $00
+
+.five:
+	db "5", $00
+
+.six:
+	db "6", $00
+
+.seven:
+	db "7", $00
+
+.eight:
+	db "8", $00
+
+.nine:
+	db "9", $00
 
 
 song_text_table:
@@ -1437,6 +1477,91 @@ song_text_table:
 .mama_bird:
 	db "MAMA BIRD", $00
 
+
+;For bonus setup
+%offset(bonus_song_table, 1)
+parent_level_number_table:
+	db !level_lakeside_limbo, 	 !music_bonus_time
+	db !level_lakeside_limbo, 	 !music_bonus_time
+	db !level_doorstop_dash, 	 !music_bonus_time
+	db !level_doorstop_dash, 	 !music_bonus_time
+	db !level_tidal_trouble, 	 !music_bonus_time_3
+	db !level_tidal_trouble, 	 !music_bonus_time_3
+	db !level_skiddas_row, 		 !music_bonus_time_3
+	db !level_skiddas_row, 		 !music_bonus_time_3
+	db !level_squeals_on_wheels, 	 !music_bonus_time
+	db !level_squeals_on_wheels,	 !music_bonus_time
+	db !level_barrel_shield_bust_up, !music_bonus_time_2
+	db !level_barrel_shield_bust_up, !music_bonus_time_2
+	db !level_riverside_race, 	 !music_bonus_time
+	db !level_riverside_race, 	 !music_bonus_time
+	db !level_murky_mill, 		 !music_bonus_time
+	db !level_murky_mill, 		 !music_bonus_time
+	db !level_springin_spiders, 	 !music_bonus_time_2
+	db !level_springin_spiders, 	 !music_bonus_time_2
+	db !level_lightning_lookout, 	 !music_bonus_time_3
+	db !level_lightning_lookout, 	 !music_bonus_time_3
+	db !level_bazzas_blockade, 	 !music_bonus_time_3
+	db !level_bazzas_blockade, 	 !music_bonus_time_3
+	db !level_rocket_barrel_ride, 	 !music_bonus_time_2
+	db !level_rocket_barrel_ride, 	 !music_bonus_time_2
+	db !level_kreeping_klasps, 	 !music_bonus_time_3
+	db !level_kreeping_klasps, 	 !music_bonus_time_3
+	db !level_tracker_barel_trek, 	 !music_bonus_time_2
+	db !level_tracker_barel_trek, 	 !music_bonus_time_2
+	db !level_fish_food_frenzy, 	 !music_bonus_time_3
+	db !level_fish_food_frenzy, 	 !music_bonus_time_3
+	db !level_fireball_frenzy, 	 !music_bonus_time
+	db !level_fireball_frenzy, 	 !music_bonus_time
+	db !level_demolition_drainpipe,  !music_bonus_time_3
+	db !level_demolition_drainpipe,  !music_bonus_time_3
+	db !level_ripsaw_rage, 		 !music_bonus_time_2
+	db !level_ripsaw_rage, 		 !music_bonus_time_2
+	db !level_blazing_bazukas, 	 !music_bonus_time
+	db !level_blazing_bazukas, 	 !music_bonus_time
+	db !level_low_g_labyrinth, 	 !music_bonus_time
+	db !level_low_g_labyrinth, 	 !music_bonus_time
+	db !level_krevice_kreepers, 	 !music_bonus_time_2
+	db !level_krevice_kreepers, 	 !music_bonus_time_2
+	db !level_tearaway_toboggan, 	 !music_bonus_time_3
+	db !level_tearaway_toboggan, 	 !music_bonus_time_3
+	db !level_barrel_drop_bounce, 	 !music_bonus_time_2
+	db !level_barrel_drop_bounce, 	 !music_bonus_time_2
+	db !level_krackshot_krock, 	 !music_bonus_time
+	db !level_krackshot_krock, 	 !music_bonus_time
+	db !level_lemguin_lunge, 	 !music_bonus_time_3
+	db !level_lemguin_lunge, 	 !music_bonus_time_3
+	db !level_buzzer_barrage, 	 !music_bonus_time
+	db !level_buzzer_barrage, 	 !music_bonus_time
+	db !level_kongfused_cliffs, 	 !music_bonus_time
+	db !level_kongfused_cliffs, 	 !music_bonus_time
+	db !level_floodlit_fish, 	 !music_bonus_time_3
+	db !level_floodlit_fish, 	 !music_bonus_time_3
+	db !level_pothole_panic, 	 !music_bonus_time
+	db !level_pothole_panic, 	 !music_bonus_time
+	db !level_ropey_rumpus, 	 !music_bonus_time
+	db !level_ropey_rumpus, 	 !music_bonus_time
+	db !level_koindozer_klamber, 	 !music_bonus_time
+	db !level_koindozer_klamber, 	 !music_bonus_time
+	db !level_creepy_caverns, 	 !music_bonus_time
+	db !level_creepy_caverns, 	 !music_bonus_time
+	db !level_bobbing_barrel_brawl,  !music_bonus_time
+	db !level_bobbing_barrel_brawl,  !music_bonus_time
+	db !level_konveyor_rope_klash, 	 !music_bonus_time
+	db !level_konveyor_rope_klash, 	 !music_bonus_time
+	db !level_poisonous_pipeline, 	 !music_bonus_time_3
+	db !level_poisonous_pipeline, 	 !music_bonus_time_3
+	db !level_swoopy_salvo, 	 !music_bonus_time_2
+	db !level_swoopy_salvo, 	 !music_bonus_time_2
+	db !level_swoopy_salvo, 	 !music_bonus_time_2
+	db !level_criss_kross_cliffs, 	 !music_bonus_time_2
+	db !level_criss_kross_cliffs, 	 !music_bonus_time_2
+	db !level_tyrant_twin_tussle, 	 !music_bonus_time
+	db !level_tyrant_twin_tussle, 	 !music_bonus_time
+	db !level_tyrant_twin_tussle, 	 !music_bonus_time
+	db !level_stampede_sprint, 	 !music_bonus_time
+	db !level_stampede_sprint, 	 !music_bonus_time
+	db !level_stampede_sprint, 	 !music_bonus_time
 
 
 

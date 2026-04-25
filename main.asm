@@ -44,6 +44,8 @@ incsrc "src/hijacks/bank_FF_hijacks.asm"
 
 
 ;NEW CODE/DATA
+
+
 org $BAD100
 	incsrc "src/prac/general.asm"
 	incsrc "src/prac/main_menu_init.asm"
@@ -68,12 +70,13 @@ org $BAD100
 
 
 ;PATCHES
-	incsrc "src/patches/bank_80_patches.asm"
-	incsrc "src/patches/bank_B2_patches.asm"
-	incsrc "src/patches/bank_B4_patches.asm"
-	incsrc "src/patches/bank_B5_patches.asm"
-	incsrc "src/patches/bank_B8_patches.asm"
-	incsrc "src/patches/bank_BE_patches.asm"
+	; incsrc "src/patches/bank_80_patches.asm"
+	; incsrc "src/patches/bank_B2_patches.asm"
+	; incsrc "src/patches/bank_B4_patches.asm"
+	; incsrc "src/patches/bank_B5_patches.asm"
+	; incsrc "src/patches/bank_B8_patches.asm"
+	; incsrc "src/patches/bank_BB_patches.asm"
+	;incsrc "src/patches/bank_BE_patches.asm"
 
 
 print "Bank BA End: ", pc
@@ -106,7 +109,11 @@ kong_icons_tiledata:
 
 shit_text_tiledata:
 	incbin "data/gfx/sprites/4bpp_text.bin"
+
+hex_text_tiledata:
+	incbin "data/gfx/misc/hex_text_tiledata.bin"
 .end
+
 
 print "Bank EB End: ", pc
 
@@ -131,23 +138,42 @@ kong_icons_palette_p1:
 kong_icons_palette_p2:
 	incbin "data/gfx/sprites/kong_icons_palette_p2.bin"
 
+kong_icons_palette_p3:
+	incbin "data/gfx/sprites/kong_icons_palette_p3.bin"
+
+kong_icons_palette_p4:
+	incbin "data/gfx/sprites/kong_icons_palette_p4.bin"
+
+kong_icons_palette_p5:
+	incbin "data/gfx/sprites/kong_icons_palette_p5.bin"
+
+kong_icons_palette_p6:
+	incbin "data/gfx/sprites/kong_icons_palette_p6.bin"
+
+kong_icons_palette_p7:
+	incbin "data/gfx/sprites/kong_icons_palette_p7.bin"
+
+kong_icons_palette_p8:
+	incbin "data/gfx/sprites/kong_icons_palette_p8.bin"
+
+kong_icons_palette_p9:
+	incbin "data/gfx/sprites/kong_icons_palette_p9.bin"
+
 settings_palette:
 	incbin "data/gfx/bg/settings/settings_palette.bin"
 
 records_palette:
 	incbin "data/gfx/bg/records/records_palette.bin"
+
 .end
 
+incsrc "data/asm/new_kong_palettes.asm"
 
 print "Bank FD End: ", pc
 
 
-
-
-
 ;TODO:
-;Play correct version of bonus song depending on the level.
-
+;Disable Krematoa red tint in levels when entered from the map to avoid making 30000 other kong palette variations
 
 ;BUGS:
 ;Cross-level/entrance savestate breaks.

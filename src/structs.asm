@@ -277,6 +277,24 @@ endstruct
 struct player_inputs_copy savestate.end
 	.p1_pressed			skip 2
 	.p1_held			skip 2
+	.end				skip 2
+endstruct
+
+
+struct BRK_data player_inputs_copy.end
+	.PC			skip 3
+	.reg_B			skip 1
+	.reg_D			skip 2
+	.reg_A			skip 2
+	.reg_X			skip 2
+	.reg_Y			skip 2
+	.reg_P			skip 1
+	.reg_S			skip 2
+	.NMI_ptr		skip 2
+	.logic_ptr		skip 2
+	.current_sprite		skip 2
+	.stack_byte_count	skip 2
+	.stack_dump		skip 64
 endstruct
 
 
@@ -290,6 +308,13 @@ struct menu_HDMA_buffer HDMA_buffer
 		.kong_oder_text_color	skip 12
 		.color_text_color	skip 12
 		.jukebox_text_color	skip 12
+endstruct
+
+
+struct brk_vram_text_buffer $7E5000
+	.xy_offset		skip 2
+	.size			skip 2
+	.text			skip 2
 endstruct
 
 

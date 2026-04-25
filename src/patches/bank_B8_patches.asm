@@ -56,7 +56,7 @@ endif
 .restart:
 	LDA #$0001
 	STA fast_retry_type
-	JMP fast_retry_kong_state_init_level
+	JML fast_retry_kong_state_init_level
 
 .return:
 	RTL
@@ -76,7 +76,7 @@ set_fast_retry_on_boss_fadeout_2:
 	BNE .return
 	LDA #$0001
 	STA fast_retry_type
-	JMP fast_retry_kong_state_init_level
+	JML fast_retry_kong_state_init_level
 
 .return:
 	RTL
@@ -95,7 +95,7 @@ set_fast_retry_on_bleak_death:
 	PLA : PLB				;Pop JSL
 	LDA #$0001
 	STA fast_retry_type
-	JMP fast_retry_kong_state_init_level
+	JML fast_retry_kong_state_init_level
 
 
 .return:

@@ -30,6 +30,8 @@ update_timer:
 	SEP #$28
 	; LDA timer.started
 	; BEQ .return
+	LDA screen_fade_speed
+	BMI .return				;If screen fading out, return
 	LDA timer.stopped
 	BNE .return
 
@@ -212,13 +214,23 @@ draw_top_left_info:
 	%conditional_ram_word(LDA, $05E3)
 	AND #$00FF
 	CMP #$000A
-	BNE .store_properties_default_x_pos		;Use palette slot 0 if not in a bear house
+	BNE .not_bear_house				;Use palette slot 0 if not in a bear house
 	LDX #$1A00
 	LDY #$3600
 	LDA #$0010
 	BRA .store_properties
 
-.store_properties_default_x_pos:
+.not_bear_house:
+	%conditional_ram_word(LDA, $075C)
+	CMP #$0002
+	BNE .not_bonus
+	%conditional_ram_word(LDA, $075E)
+	AND #$00FF
+	CMP #$0003
+	BCC .not_bonus					;If bonus is find the coin or bash the baddies, dont offset
+	LDX #$1C00					;Else Offset downwards to not obscure star/green banana counter
+	LDY #$3000
+.not_bonus:
 	LDA #$0008
 .store_properties:
 	STX temp_1A
@@ -293,10 +305,19 @@ draw_top_left_info:
 	%conditional_ram_word(LDA, $05E3)
 	AND #$00FF
 	CMP #$000A
-	BNE ..store_y_pos
+	BNE ..not_bear_house
 	LDX #$0010
 	LDY #$2300
-..store_y_pos:
+..not_bear_house:
+	%conditional_ram_word(LDA, $075C)
+	CMP #$0002
+	BNE ..not_bonus
+	%conditional_ram_word(LDA, $075E)
+	AND #$00FF
+	CMP #$0003
+	BCC ..not_bonus					;If bonus is find the coin or bash the baddies, dont offset
+	LDY #$2500					;Else Offset downwards to not obscure star/green banana counter
+..not_bonus:
 	STY temp_1A
 	LDA rng_seed+$1
 	LSR

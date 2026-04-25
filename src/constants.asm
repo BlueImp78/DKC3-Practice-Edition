@@ -87,6 +87,7 @@
 !music_bonus_win			= $0301
 !music_bonus_time			= $0401
 !music_bonus_time_2			= $0402
+!music_bonus_time_3			= $0403
 !music_brothers_bear			= $0004
 !music_brothers_bear_blues		= $0104
 !music_get_fit_a_gogo			= $0005

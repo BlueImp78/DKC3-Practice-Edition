@@ -479,86 +479,70 @@ unlock_levels:
 
 set_game_start_map_stuff:
 	%conditional_ram_word(STZ, $0695)				;Krematoa locked
-	LDA #$000C
-	%conditional_ram_word(STA, $0615)				;Reset Bazaar
-	%conditional_ram_word(STZ, $0619)				;Reset Bramble
-	%conditional_ram_word(STZ, $061D)				;Reset Barnacle
-	%conditional_ram_word(STZ, $0623)				;Reset Bazooka
 	%conditional_ram_word(STZ, $0601)				;No rocks removed in Krematoa
 	%conditional_ram_word(STZ, boomer_explosive_count)
-	%conditional_ram_word(STZ, boomer_cog_count)
 	%conditional_ram_word(STZ, banana_bird_count)
 	%conditional_ram_word(STZ, bear_coin_count)
 	%conditional_ram_word(STZ, bonus_coin_count)
 	%conditional_ram_word(STZ, dk_coin_count)
-	RTS
+	JMP reset_map_relevant_bear_flags
 
 
 set_w2_to_w3_map_stuff:
 	JSR unlock_world_map
 	JSR unlock_levels
-	LDA #$000C
-	%conditional_ram_word(STA, $0615)				;Reset Bazaar
 	LDA #$0002
 	%conditional_ram_word(STA, banana_bird_count)
 	LDA #$0015
 	%conditional_ram_word(STA, bonus_coin_count)
 	%conditional_ram_word(STZ, $0695)				;Krematoa locked
 	%conditional_ram_word(STZ, $0601)				;No rocks removed in Krematoa
-	%conditional_ram_word(STZ, boomer_explosive_count)
-	%conditional_ram_word(STZ, boomer_cog_count)
-	%conditional_ram_word(STZ, $062D)				;Reset Boomer
-	%conditional_ram_word(STZ, $0619)				;Reset Bramble
-	%conditional_ram_word(STZ, $061D)				;Reset Barnacle
-	%conditional_ram_word(STZ, $0623)				;Reset Bazooka
 	LDA #$0001
 	%conditional_ram_word(STA, $0693)				;Mark w5 as not beaten so funky wont give dk coin dialogue
-	RTS
+	JMP reset_map_relevant_bear_flags
 
 set_w4_to_w5_map_stuff:
 	JSR unlock_world_map
 	JSR unlock_levels
-	LDA #$000C
-	%conditional_ram_word(STA, $0615)				;Reset Bazaar
 	LDA #$0002
 	%conditional_ram_word(STA, banana_bird_count)
 	LDA #$0029
 	%conditional_ram_word(STA, bonus_coin_count)
 	%conditional_ram_word(STZ, $0695)				;Krematoa locked
 	%conditional_ram_word(STZ, $0601)				;No rocks removed in Krematoa
-	%conditional_ram_word(STZ, boomer_explosive_count)
-	%conditional_ram_word(STZ, boomer_cog_count)
-	%conditional_ram_word(STZ, $062D)				;Reset Boomer
-	%conditional_ram_word(STZ, $0619)				;Reset Bramble
-	%conditional_ram_word(STZ, $061D)				;Reset Barnacle
-	%conditional_ram_word(STZ, $0623)				;Reset Bazooka
 	LDA #$0001
 	%conditional_ram_word(STA, $0693)				;Mark w5 as not beaten so funky wont give dk coin dialogue
 	LDA #$2002
 	%conditional_ram_word(STA, $0605)				;Set double ski's
-	RTS
+	JMP reset_map_relevant_bear_flags
 
+set_w5_to_w6_map_stuff:
+	JSR unlock_world_map
+	JSR unlock_levels
+	LDA #$000C
+	%conditional_ram_word(STA, $0615)				;Reset Bazaar
+	LDA #$0003
+	%conditional_ram_word(STA, banana_bird_count)
+	LDA #$0029
+	%conditional_ram_word(STA, bonus_coin_count)
+	LDA #$0034
+	%conditional_ram_word(STA, bear_coin_count)
+	%conditional_ram_word(STZ, $0695)				;Krematoa unlocked
+	%conditional_ram_word(STZ, $0601)				;No rocks removed in Krematoa
+	JMP reset_map_relevant_bear_flags
 
 set_w8_unlock_map_stuff:
 	JSR unlock_world_map
 	JSR unlock_levels
 	%conditional_ram_word(STZ, $0695)				;Krematoa locked
 	%conditional_ram_word(STZ, $0601)				;No rocks removed in Krematoa
-	%conditional_ram_word(STZ, boomer_explosive_count)
-	%conditional_ram_word(STZ, boomer_cog_count)
-	%conditional_ram_word(STZ, $062D)				;Reset Boomer
-	LDA #$000C
-	%conditional_ram_word(STA, $0615)				;Reset Bazaar
-	%conditional_ram_word(STZ, $0619)				;Reset Bramble
-	%conditional_ram_word(STZ, $061D)				;Reset Barnacle
-	%conditional_ram_word(STZ, $0623)				;Reset Bazooka
 	LDA #$0006
 	%conditional_ram_word(STA, banana_bird_count)
 	LDA #$0035
 	%conditional_ram_word(STA, bear_coin_count)
 	LDA #$004A
 	%conditional_ram_word(STA, bonus_coin_count)
-	RTS
+	JMP reset_map_relevant_bear_flags
 
 
 set_w7_to_w8_map_stuff:
@@ -567,18 +551,12 @@ set_w7_to_w8_map_stuff:
 	LDA #$7F3F
 	%conditional_ram_word(STA, $0695)				;Krematoa unlocked
 	%conditional_ram_word(STZ, $0601)				;No rocks removed in Krematoa
-	%conditional_ram_word(STZ, boomer_explosive_count)
-	%conditional_ram_word(STZ, boomer_cog_count)
-	%conditional_ram_word(STZ, $062D)				;Reset Boomer
 	%conditional_ram_word(STZ, $0615)				;Empty bazaar inventory
-	%conditional_ram_word(STZ, $0619)				;Reset Bramble
-	%conditional_ram_word(STZ, $061D)				;Reset Barnacle
-	%conditional_ram_word(STZ, $0623)				;Reset Bazooka
 	LDA #$0006
 	%conditional_ram_word(STA, banana_bird_count)
 	LDA #$004A
 	%conditional_ram_word(STA, bonus_coin_count)
-	RTS
+	JMP reset_map_relevant_bear_flags_skip_bazaar
 
 
 set_103_cleanup_map_stuff:
@@ -607,6 +585,19 @@ set_103_cleanup_map_stuff:
 	%conditional_ram_word(STA, dk_coin_count)
 	RTS
 
+
+
+reset_map_relevant_bear_flags:
+	LDA #$000C
+	%conditional_ram_word(STA, $0615)				;Bazaar
+.skip_bazaar:
+	%conditional_ram_word(STZ, $062D)				;Boomer
+	%conditional_ram_word(STZ, $0619)				;Bramble
+	%conditional_ram_word(STZ, $061D)				;Barnacle
+	%conditional_ram_word(STZ, $0623)				;Bazooka
+	%conditional_ram_word(STZ, boomer_explosive_count)
+	%conditional_ram_word(STZ, boomer_cog_count)
+	RTS
 
 
 
@@ -1000,10 +991,7 @@ trigger_transition:
 	CMP #!bonus_level_range_start
 	BCC .check_exit_room
 	INC main_menu.entered_bonus
-	LDA #!music_bonus_time_2
-	CMP current_song
-	BEQ .init_level
-	JSL play_song_with_transition
+	JSR setup_bonus
 .init_level:
 	PLA
 	JML init_level
@@ -1074,4 +1062,21 @@ check_tufst:
 	LDA #$8080
 	TSB active_cheats			;Enable TUFST cheat
 .return:
+	RTS
+
+
+;Set appropriate parent level number and song number
+setup_bonus:
+	SEC
+	SBC #!bonus_level_range_start
+	ASL
+	TAX
+	LDA.l parent_level_number_table,x
+	AND #$00FF
+	%conditional_ram_word(STA, parent_level_number)
+	LDA.l bonus_song_table,x
+	AND #$00FF
+	JSL play_song
+	LDA #$0001
+	JSL transition_song
 	RTS

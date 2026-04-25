@@ -1,4 +1,5 @@
 if !version == !us
+BRK_native_start		= $00FFE6
 hijack_start_select_check 	= $808BA4
 hijack_pause_handler		= $808AFD
 hijack_gameplay_frame_count_inc	= $808353
@@ -8,6 +9,7 @@ hijack_wrinkly_save_routine	= $80AF0C
 
 
 elseif !version == !j0
+BRK_native_start		= $00FFE6
 hijack_start_select_check 	= $808B93
 hijack_pause_handler		= $808AEC
 hijack_gameplay_frame_count_inc	= $808342
@@ -18,6 +20,7 @@ hijack_wrinkly_save_routine	= $80AD87
 
 
 elseif !version == !j1
+BRK_native_start		= $00FFE6
 hijack_start_select_check 	= $808B93
 hijack_pause_handler		= $808AEC
 hijack_gameplay_frame_count_inc	= $808342
@@ -33,6 +36,11 @@ endif
 hijack_boot_code 		= $8080C4
 hijack_unused_NMI_handler 	= $80CB6E	;An unused copy of NMI handler in US, junk unused space in J
 
+
+
+
+org BRK_native_start
+	dw BRK_handler
 
 
 
@@ -102,21 +110,37 @@ org hijack_unused_NMI_handler
 	settings_NMI_hop:
 		JML settings_NMI
 
-;Include some code here cuz convenient spot, nothing but junk data ahead.
+
+;Include some code here cuz convenient spot to save space in BA. Nothing but junk data ahead in this bank.
+	incsrc "src/patches/bank_80_patches.asm"
+	incsrc "src/patches/bank_B2_patches.asm"
+	incsrc "src/patches/bank_B4_patches.asm"
+	incsrc "src/patches/bank_B5_patches.asm"
+	incsrc "src/patches/bank_B8_patches.asm"
+	incsrc "src/patches/bank_BB_patches.asm"
+	incsrc "src/patches/bank_BE_patches.asm"
+
+
 	incsrc "src/prac/savestate.asm"
 	incsrc "src/prac/sram.asm"
 	incsrc "src/prac/best_times.asm"
+	incsrc "src/prac/crash_handler.asm"
+
+
+
+
+	print "Bank 80 End: ", pc
 
 
 
 org hijack_start_select_check
 	JSL start_select_always
-	NOP #2
+	NOP
+	NOP
 
 
 org hijack_pause_handler
 	JSL check_fast_retry_LR_input
-
 
 
 org hijack_gameplay_frame_count_inc
