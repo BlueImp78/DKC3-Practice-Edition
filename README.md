@@ -19,7 +19,7 @@
 
 - Set your desired Kong order represented by the Kong icons.
 
-- Choose between p1 or p2 colors for the Kongs.
+- Choose between 9 different colors for the Kongs.
 
 - Choose what song plays in the menu. (Press any face button after choosing the song to make it play)
 
